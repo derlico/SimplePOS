@@ -79,7 +79,5 @@ def sales(request):
   return render(request, 'pages/reports.html', {'sale': sales})
 
 def pos(request):
-  services = Service.objects.all()
-  products = Product.objects.all()
-  product = {'product': products}.update({'service': services})
-  return render(request, 'pages/pos.html', product)
+  product = Product.objects.all()
+  return render(request, 'pages/pos.html', {'products': product})

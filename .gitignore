@@ -152,4 +152,4 @@ cython_debug/
 #.idea/
 
 # Database
-.db.slite3
+.db.sqlite3
