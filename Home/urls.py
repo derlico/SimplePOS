@@ -8,7 +8,7 @@ urlpatterns = [
     path('accounts/', views.accounts, name='accounts'),
     path('catalog/', views.products, name='catalog'),
     path('pos/', views.pos, name='pos'),
-    path('reports/', views.sales, name='reports'),
+    path('reports/', views.index, name='reports'),
     path('settings/', views.settings, name='settings'),
     path('accounts/profile/', views.profile, name='profile'),
 

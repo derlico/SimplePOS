@@ -30,7 +30,7 @@ class Sale(models.Model):
     sale_date = models.DateTimeField(auto_now_add=True)
     sale_amount = models.PositiveBigIntegerField("Total")
     customer_id = models.ForeignKey(
-        "Customer", on_delete=models.CASCADE
+        "Customer", on_delete=models.SET_NULL, null=True
     )
     def __str__(self) -> str:
         return self.sale_ref
@@ -41,3 +41,26 @@ class Payment_methods(models.Model):
     #max_limit = models.BigIntegerField(null=)
     def __str__(self) -> str:
         return self.payment_type_name
+    
+class Order_item(models.Model):
+    product = models.OneToOneField(Product, on_delete=models.SET_NULL, null=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+    def __str__(self) -> str:
+        return self.product.product_name
+
+class Order(models.Model):
+    order_id = models.AutoField(primary_key=True)
+    customer_id = models.ForeignKey(
+        "Customer", on_delete=models.SET_NULL, null=True
+    )
+    items = models.ManyToManyField(Order_item)
+    order_total = models.PositiveBigIntegerField("Total")
+    order_date = models.DateTimeField(auto_now_add=True)
+    def __str__(self) -> str:
+        return self.order_id
+    
+    def get_cart_items(self):
+        return self.items.all()
+    
+    def get_cart_total(self):
+        return sum([item.product.product_price for item in self.items.all()])

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.db.models import Sum
+from django.db.models import Sum, Avg
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView, PasswordResetConfirmView
 
 from Home.models import *
@@ -75,9 +75,12 @@ def services(request):
   return render(request, 'pages/catalog.html', {'service': services})
 
 def sales(request):
-  sales = Sale.objects.aggregate(Sum('sale_amount'))
-  return render(request, 'pages/reports.html', {'sale': sales})
+  sales = Sale.objects.aggregate(Avg('sale_amount'))
+  return render(request, 'pages/reports.html', {'sales': sales})
 
 def pos(request):
   product = Product.objects.all()
   return render(request, 'pages/pos.html', {'products': product})
+
+#def add_to_cart(request):
+  #product = Product.objects.filter

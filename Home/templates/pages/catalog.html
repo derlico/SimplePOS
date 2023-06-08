@@ -7,6 +7,65 @@
     <div class="col-12">
       <div class="card mb-4">
         <div class="card-header pb-0">
+          <h6 class="text-dark">Add New Product</h6>
+        </div>
+        <div class="card-body px-0 pt-0 pb-2">
+          <div class="p-0">
+            <table class="table align-items-center mb-0">
+              <tbody>
+                <form action="submit" method="post">
+                <tr>
+                  <th class="text-uppercase font-weight-bolder text-center">Product Name</th>
+                  <td>
+                    <div class="d-flex">
+                        <input type="text" style="width: 250px; font-size: large;">
+                    </div>
+                  </td>
+                  </tr>
+                  <tr>
+                  <th class="text-uppercase font-weight-bolder text-center">Product Code</th>
+                  <td>
+                    <div class="d-flex">
+                      <input type="text" style="width: 250px; font-size: large;">
+                  </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="text-uppercase font-weight-bolder text-center">Product Cost</th>
+                  <td>
+                    <div class="d-flex">
+                      <input type="text" style="width: 250px; font-size: large;">
+                  </div>
+                  </td>
+                  </tr>
+                  <tr>
+                  <th class="text-uppercase font-weight-bolder text-center">Product Price</th>
+                  <td>
+                    <div class="d-flex">
+                      <input type="text" style="width: 250px; font-size: large;">
+                  </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>
+                    <div class="d-flex px-2">
+                      <button type="submit" class="btn bg-gradient-success ">Add Product</button>
+                    </div>
+                  </td>
+                </tr>
+                </form>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-4">
+        <div class="card-header pb-0">
           <h6>Products List</h6>
         </div>
         <div class="card-body px-0 pt-0 pb-2">
@@ -25,26 +84,24 @@
                 {% for products in product %}
                 <tr>
                   <td>
-                    <div class="d-flex px-2 py-1">
+                    <div class="d-flex px-2">
                       <!--<div>
                         <img src="{% static 'img/team-2.jpg' %}" class="avatar avatar-sm me-3" alt="user1">
                       </div>-->
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-sm">{{products.product_name}}</h6>
+                        <h6 class="mb-0 text">{{products.product_name}}</h6>
                        <!-- <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>-->
-                      </div>
                     </div>
                   </td>
                   <td>
-                    <p class="text-xs font-weight-bold mb-0">{{products.product_code}}</p>
+                    <p class="text font-weight-bold mb-0">{{products.product_code}}</p>
                     <!--<p class="text-xs text-secondary mb-0">Organization</p>-->
                   </td>
                   <td>
-                    <p class="text-xs font-weight-bold mb-0">{{products.product_cost}}</p>
+                    <p class="text font-weight-bold mb-0">{{products.product_cost}}</p>
                     <!--<p class="text-xs text-secondary mb-0">Organization</p>-->
                   </td>
                   <td>
-                    <p class="text-xs font-weight-bold mb-0">{{products.product_price}}</p>
+                    <p id="price" class="text font-weight-bold mb-0">{{products.product_price}}</p>
                     <!--<p class="text-xs text-secondary mb-0">Organization</p>-->
                   </td>
                   
@@ -52,61 +109,15 @@
                     <span class="badge badge-sm bg-gradient-success">{{products.product_price}}</span>
                   </td>-->
                   <td class="align-middle">
-                    <a href="javascript:;" class="badge badge-sm bg-gradient-success" data-toggle="tooltip" data-original-title="Edit Product" onclick="setEditable()">
-                      Edit
-                    </a>
-                  </td>
-                </tr>
-              {% endfor %}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <div class="card mb-4">
-        <div class="card-header pb-0">
-          <h6>Services List</h6>
-        </div>
-        <div class="card-body px-0 pt-0 pb-2">
-          <div class="table-responsive p-0">
-            <table class="table align-items-center mb-0">
-              <thead>
-                <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Service Name</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Cost</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price</th>
-                  <th class="text-secondary opacity-7"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for services in service %}
-                <tr>
-                  <td>
-                    <div class="d-flex px-2 py-1">
-                      <!--<div>
-                        <img src="{% static 'img/team-2.jpg' %}" class="avatar avatar-sm me-3" alt="user1">
-                      </div>-->
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-sm">{{services.service_name}}</h6>
-                       <!-- <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>-->
-                      </div>
+                    
+                    <a href="javascript:;" class="btn-icon-only" data-toggle="tooltip" data-original-title="Edit Product" onclick="{
+                      let my = document.getElementById('price');
+                      my.style.border = 'green';
+                      my.contentEditable = 'true';
+                    }">
+                    <div class="icon icon-shape bg-gradient-success shadow text-center border-radius-md">
+                      <i class="ni ni-key-25 text-lg opacity-10" aria-hidden="true"></i>
                     </div>
-                  </td>
-                  <td>
-                    <p class="text-xs font-weight-bold mb-0">{{services.service_cost}}</p>
-                    <!--<p class="text-xs text-secondary mb-0">Organization</p>-->
-                  </td>
-                  <td>
-                    <p class="text-xs font-weight-bold mb-0">{{services.service_fee}}</p>
-                    <!--<p class="text-xs text-secondary mb-0">Organization</p>-->
-                  </td>
-                  <td class="align-middle">
-                    <a href="javascript:;" class="badge badge-sm bg-gradient-success" data-toggle="tooltip" data-original-title="Edit user">
-                      Edit
                     </a>
                   </td>
                 </tr>
@@ -118,5 +129,14 @@
       </div>
     </div>
   </div>
+  
   </div>
   {% endblock content %}
+
+  <script>
+    function setEditable(){
+      let my = document.getElementById(price);
+      my.style.color = "red";
+      alert("working");
+    }
+  </script>

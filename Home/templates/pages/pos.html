@@ -30,7 +30,7 @@
                                   <img src="{% static 'img/team-2.jpg' %}" class="avatar avatar-sm me-3" alt="user1">
                                 </div>-->
                                 <div class="d-flex flex-column justify-content-center">
-                                  <h6 class="mb-0 text-sm">{{product.product_name}}</h6>
+                                  <h6 id="product_name" class="mb-0 text-sm">{{product.product_name}}</h6>
                                  <!-- <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>-->
                                 </div>
                               </div>
@@ -39,11 +39,26 @@
                               <p class="text-xs font-weight-bold mb-0" contenteditable="true">1</p>
                             </td>
                             <td>
-                              <p class="text-xs font-weight-bold mb-0" contenteditable="true">{{product.product_price}}</p>
+                              <p id="price" class="text-xs font-weight-bold mb-0" contenteditable="true">{{product.product_price}}</p>
                             </td>
                             <td class="align-middle">
-                              <a href="javascript:;" class="badge badge-sm bg-gradient-success" data-toggle="tooltip" data-original-title="Edit Product" onclick="addToCart()">
-                                Add to Cart
+                              <a href="javascript:;" class="badge badge-sm bg-gradient-success" data-toggle="tooltip" data-original-title="Edit Product" onclick="{
+                                let product = document.getElementById('product_name');
+                                let price = document.getElementById('price');
+                                let cart_product = document.getElementById('cart_product').innerHTML = product.innerHTML;
+                                let cart_quantity = document.getElementById('cart_quantity').innerHTML = '1';
+                                let cart_price = document.getElementById('cart_price').innerHTML = price.innerHTML;
+
+                                document.getElementById('cart_items').insertRow = {
+                                 
+                                  
+                                }
+
+                                //document.getElementById('cart_product').innerHTML = product.innerHTML
+                                //document.getElementById('cart_quantity').innerHTML = '1'
+                                //document.getElementById('cart_price').innerHTML = price.innerHTML
+                              }">
+                                <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
                               </a>
                             </td>
                           </tr>
@@ -61,15 +76,32 @@
             <div class="card-header pb-0 p-3">
               <div class="row">
                  <div class="card-header pb-0 p-3">
-                  <h6 class="mb-0">Customer: Ian <a href="javascript:;" class="badge badge-sm bg-gradient-success" data-toggle="tooltip" data-original-title="Edit Product" onclick="setEditable()">Change</a></a></h6>
+                  <h6 class="mb-0">Customer:<a href="javascript:;" class="badge badge-sm bg-gradient-success" data-toggle="tooltip" data-original-title="Edit Product" onclick="{
+                    document.getElementById('change_cust').contentEditable='true';
+                  }">Change</a> <h6 class="mb-0" id="change_cust">Walk-In Customer</h6></h6>
                 </div>
               <div class="card h-100 min-vh-65 vh-65">
-                <ul>
-                  <li>Product 1</li>
-                  
-                </ul>
+                <table>
+                  <tr>
+                    <th style="width: 120px;">Item</td>
+                    <th>Qty</td>
+                    <th>Price</td>
+                  </tr>
+                  <tr id="cart_items">
+                    <td id="cart_product"></td>
+                    <!--not working element-->
+                    <td contenteditable="true" id="cart_quantity" onchange="{
+                      let new_qty = document.getElementById('cart_quantity').innerHTML
+                      let price = document.getElementById('cart_price').innerHTML
+                      let new_price = parseInt(new_qty) * parseInt(price);
+                      price = new_price;
+                      alert(price);
+                    }"></td>
+                    <td contenteditable="true" id="cart_price"></td>
+                  </tr>                  
+                <table>
               </div>
-              <div class="card-header pb-0 p-3 h-100">
+              <div class="card-header pb-0 h-100">
                 <h6 class="mb-0">Total</h6>
                 <div class="d-grid gap-2 d-md-flex align-items-center text-sm">
                   <button class="btn btn-outline-primary btn-sm mb-0">Cash</button>
