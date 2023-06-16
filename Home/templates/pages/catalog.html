@@ -2,62 +2,51 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid py-4">
+<div class="container py-4">
   <div class="row">
     <div class="col-12">
       <div class="card mb-4">
         <div class="card-header pb-0">
-          <h6 class="text-dark">Add New Product</h6>
+          <h6 class="text-dark">Add Product</h6>
         </div>
+        <!--Form for adding a new product-->
         <div class="card-body px-0 pt-0 pb-2">
-          <div class="p-0">
-            <table class="table align-items-center mb-0">
-              <tbody>
-                <form action="submit" method="post">
-                <tr>
-                  <th class="text-uppercase font-weight-bolder text-center">Product Name</th>
-                  <td>
-                    <div class="d-flex">
-                        <input type="text" style="width: 250px; font-size: large;">
+          <form action="">
+              <div class="container-fluid pb-0">
+                <div class="row">
+                  <div class="col-auto">
+                    Product Name
+                    <input class="w-100" type="text">
+                  </div>
+                  <div class="col-auto">
+                    Product Code
+                    <input class="w-100" type="text">
+                  </div>   
+                  <div class="col-auto">
+                    Buying Cost
+                    <input class="w-100" type="text">
+                  </div>             
+                  <div class="col-auto">
+                    Selling Price
+                    <input class="w-100" type="text">
+                  </div>   
+                  <div class="col-auto">
+                    Tax Applicable
+                    <div class="w-100 d-flex">
+                      <input class="bg-gradient-secondary" type="radio" name="vat" id="vat"> <label class="text-xs text-secondary">VAT(16%) &nbsp;&nbsp;</label>
+                      <input type="radio" name="zero" id="zero"><label class="text-xs text-secondary">Zero-Rated &nbsp;&nbsp;</label>
+                      <input type="radio" name="exempt" id="exempt"> <label class="text-xs text-secondary">Exempted</label>
                     </div>
-                  </td>
-                  </tr>
-                  <tr>
-                  <th class="text-uppercase font-weight-bolder text-center">Product Code</th>
-                  <td>
-                    <div class="d-flex">
-                      <input type="text" style="width: 250px; font-size: large;">
+                  </div>            
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-auto">
+                    <button type="submit" class="btn bg-gradient-success ">Add Product</button>
                   </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th class="text-uppercase font-weight-bolder text-center">Product Cost</th>
-                  <td>
-                    <div class="d-flex">
-                      <input type="text" style="width: 250px; font-size: large;">
-                  </div>
-                  </td>
-                  </tr>
-                  <tr>
-                  <th class="text-uppercase font-weight-bolder text-center">Product Price</th>
-                  <td>
-                    <div class="d-flex">
-                      <input type="text" style="width: 250px; font-size: large;">
-                  </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>
-                    <div class="d-flex px-2">
-                      <button type="submit" class="btn bg-gradient-success ">Add Product</button>
-                    </div>
-                  </td>
-                </tr>
-                </form>
-              </tbody>
-            </table>
-          </div>
+                </div>
+              </div>
+          </form>
         </div>
       </div>
     </div>

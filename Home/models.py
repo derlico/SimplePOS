@@ -7,6 +7,7 @@ class Product(models.Model):
     product_code = models.IntegerField("Product Code")
     product_price = models.PositiveBigIntegerField("Price")
     product_cost = models.PositiveBigIntegerField("Cost")
+    product_tax = models.IntegerChoices()
     #product_image = models.ImageField("Product Image")
     
     def __str__(self) -> str:

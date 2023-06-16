@@ -23,7 +23,7 @@
                         </thead>
                         <tbody>
                           {% for product in products %}
-                          <tr>
+                          <tr id=uniqueID>
                             <td>
                               <div class="d-flex px-2 py-1">
                                 <!--<div>
@@ -42,18 +42,36 @@
                               <p id="price" class="text-xs font-weight-bold mb-0" contenteditable="true">{{product.product_price}}</p>
                             </td>
                             <td class="align-middle">
-                              <a href="javascript:;" class="badge badge-sm bg-gradient-success" data-toggle="tooltip" data-original-title="Edit Product" onclick="{
-                                let product = document.getElementById('product_name');
-                                let price = document.getElementById('price');
-                                let cart_product = document.getElementById('cart_product').innerHTML = product.innerHTML;
-                                let cart_quantity = document.getElementById('cart_quantity').innerHTML = '1';
-                                let cart_price = document.getElementById('cart_price').innerHTML = price.innerHTML;
-
-                                document.getElementById('cart_items').insertRow = {
-                                 
-                                  
-                                }
-
+                              <a href="#;" class="badge badge-sm bg-gradient-success" data-toggle="tooltip" data-original-title="Add to Cart" onclick="{
+                                  let product = document.getElementById('product_name').innerHTML;
+                                  let price = document.getElementById('price').innerHTML;
+/*                                let cart_product = document.getElementById('cart_product').innerHTML = product.innerHTML;
+                                  let cart_price = document.getElementById('cart_price').innerHTML = price.innerHTML; */
+                                  do
+                                  {
+                                    let newRow = document.getElementById('my_cart').insertRow(-1,);
+                                    newRow.id=newRow.uniqueID;
+                                    let newCell = newRow.insertCell(0);
+                                    let product_name = document.createTextNode(product);
+                                    newCell.appendChild(product_name);
+                                    let newCell1 = newRow.insertCell(1);
+                                    let product_qty = document.createTextNode('1');
+                                    newCell1.appendChild(product_qty);
+                                    let newCell2 = newRow.insertCell(2);
+                                    let product_price = document.createTextNode(price);
+                                    newCell2.appendChild(product_price);
+                                    let newCell3 = newRow.insertCell(3);
+                                    let del = document.createTextNode('&#10062;')
+                                    newCell3.appendChild(del)
+                                    total_price = Number(price) + total_price;
+                                    document.getElementById('total').value = total_price;
+                                    console.log(product_name.textContent);
+                                    console.log(typeof(total_price));
+                                  }
+                                  while (
+                                    product_name.value != product.value
+                                  )                        
+                                
                                 //document.getElementById('cart_product').innerHTML = product.innerHTML
                                 //document.getElementById('cart_quantity').innerHTML = '1'
                                 //document.getElementById('cart_price').innerHTML = price.innerHTML
@@ -67,29 +85,30 @@
                       </table>
                     </div>
                     
-                  </div>
+              </div>
+              
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6">
           <div class="card h-100">
             <div class="card-header pb-0 p-3">
-              <div class="row">
-                 <div class="card-header pb-0 p-3">
+              <div class="row-7">
+                <div class="card-header pb-0 p-3">
                   <h6 class="mb-0">Customer:<a href="javascript:;" class="badge badge-sm bg-gradient-success" data-toggle="tooltip" data-original-title="Edit Product" onclick="{
                     document.getElementById('change_cust').contentEditable='true';
                   }">Change</a> <h6 class="mb-0" id="change_cust">Walk-In Customer</h6></h6>
                 </div>
-              <div class="card h-100 min-vh-65 vh-65">
-                <table>
+                <div class="card h-100 min-vh-50 max-height-vh-50 vh-50 container" style="overflow-y: scroll;">
+                <table id="my_cart">
                   <tr>
                     <th style="width: 120px;">Item</td>
                     <th>Qty</td>
                     <th>Price</td>
                   </tr>
-                  <tr id="cart_items">
+                  <!-- <tr id="cart_items">
                     <td id="cart_product"></td>
-                    <!--not working element-->
+                    not working element
                     <td contenteditable="true" id="cart_quantity" onchange="{
                       let new_qty = document.getElementById('cart_quantity').innerHTML
                       let price = document.getElementById('cart_price').innerHTML
@@ -98,24 +117,69 @@
                       alert(price);
                     }"></td>
                     <td contenteditable="true" id="cart_price"></td>
-                  </tr>                  
-                <table>
-              </div>
-              <div class="card-header pb-0 h-100">
-                <h6 class="mb-0">Total</h6>
-                <div class="d-grid gap-2 d-md-flex align-items-center text-sm">
-                  <button class="btn btn-outline-primary btn-sm mb-0">Cash</button>
-                  <button class="btn btn-outline-success btn-sm mb-0">Mpesa</button>
-                  <!--<button class="btn btn-outline-warning btn-sm mb-0">Bank Transfers</button>-->
-                  <button class="btn btn-outline-info btn-sm mb-0">Others</button>
+                  </tr>            -->       
+                </table>
+                </div>
+                <div class="card pb-0 container">
+                  <div class="row">
+                  <div class="col-6">
+                  <h6 class="mb-0" style="font-size: larger;">Total &#128180;</h6>
+                  </div>
+                  <div class="col-6">
+                    <input type="text" name="" id="total" value="0" style="margin-bottom: 10px;">
+                  </div>
+                  </div>
                 </div>
               </div>
             </div>
+            <hr>
+            <div class="card d-grid gap-2 align-items-center text-sm container">
+                
+                <div class="row d-flex">
+                  <div class="col-6">
+                    <div class="col-auto">
+                      <b>Cash</b>
+                    </div>
+                    <div class="col-auto">
+                      <input type="number" value="0" class="w-75">
+                    </div>
+                  </div>
+
+                  <div class="col-6">
+                    <div class="col-auto">
+                      <b>Mpesa</b>
+                    </div>
+                    <div class="col-auto">
+                      <input type="number" value="0" class="w-75">
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="row d-flex">
+                  <div class="col-6">
+                    <div class="col-auto">
+                      <b>Bank Transfer</b>
+                    </div>
+                    <div class="col-auto">
+                      <input type="number" value="0" class="w-75">
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="col-auto">
+                      <button class="btn btn-outline-primary btn-sm mb-0">Credit</button>
+                      <b>Credit</b>
+                    </div>
+                    <div class="col-auto">
+                      <input type="number" class="w-75">
+                    </div>
+                  </div>
+                </div> -->  
+                <div class="row" style="margin-bottom: 10px;">
+                  <button class="btn bg-gradient-dark btn-sm mb-0">Checkout</button>
+                </div>              
             </div>
           </div>
-        </div>
       </div>
-        
+      </div>
       
       {% include "includes/footer.html" %}
 
@@ -128,6 +192,9 @@
 
   <script src="{% static 'js/plugins/chartjs.min.js' %}"></script>
   <script src="{% static 'js\pos.js' %}"></script>
+  <script>
+    globalThis.total_price = 0;
+  </script>
   <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
 
@@ -194,7 +261,6 @@
         },
       },
     });
-
 
     var ctx2 = document.getElementById("chart-line").getContext("2d");
 
